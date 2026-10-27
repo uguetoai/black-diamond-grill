@@ -64,6 +64,7 @@ p{margin:0}
 .hero p.lead{margin-top:22px;font-size:1.12rem;color:var(--soft);max-width:44ch}
 .hero .ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
 .hero .note{margin-top:16px;font-size:.86rem;color:var(--soft)}
+[hidden]{display:none!important}
 .live{margin-top:22px;display:grid;gap:12px;max-width:46ch}
 .live-wait{display:inline-flex;align-items:center;gap:8px;font:600 .92rem/1.3 var(--sans);color:var(--ink);background:var(--paper-2);border:1px solid var(--rule);padding:9px 12px;width:fit-content;margin:0}
 .live-wait::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--basil);flex:none}
@@ -155,6 +156,19 @@ p{margin:0}
 .wtable td small{display:block;font:400 .8rem/1.4 var(--sans);color:#a99d91;margin-top:2px}
 
 /* story */
+.town{padding-block:clamp(56px,8vw,96px);background:var(--paper-2);border-block:1px solid var(--rule)}
+.town h2{font-size:clamp(2rem,4vw,3.2rem);line-height:1.05;margin-top:14px;max-width:20ch}
+.town .intro{margin-top:16px;color:var(--soft);max-width:60ch}
+.town ol{list-style:none;margin:36px 0 0;padding:0;display:grid;grid-template-columns:repeat(6,1fr);gap:0;border-top:2px solid var(--ink)}
+.town li{padding:18px 16px 0 0;position:relative}
+.town li::before{content:"";position:absolute;top:-7px;left:0;width:12px;height:12px;border-radius:50%;background:var(--paper-2);border:2px solid var(--ink)}
+.town li:last-child::before{background:var(--wine);border-color:var(--wine)}
+.town .yr{font:400 1.9rem/1 var(--display);display:block}
+.town li:last-child .yr{color:var(--wine)}
+.town li p{margin-top:8px;font-size:.92rem;color:var(--soft)}
+.town .src{margin-top:28px;font-size:.8rem;color:var(--soft)}
+.town .src a{color:inherit}
+@media (max-width:860px){.town ol{grid-template-columns:1fr;border-top:0;border-left:2px solid var(--ink);margin-left:6px}.town li{padding:0 0 22px 22px}.town li::before{top:4px;left:-8px}}
 .story{padding-block:clamp(64px,9vw,112px)}
 .story .wrap{display:grid;grid-template-columns:.75fr 1.25fr;gap:clamp(28px,6vw,96px);align-items:center}
 .story img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:top;background:var(--paper-2)}
@@ -323,6 +337,23 @@ gtag('config', 'G-PFQW4PSBPS');
         </div>
         <blockquote>“Our family is devoted to serving you the finest foods with superior service.”</blockquote>
       </div>
+    </div>
+  </section>
+
+  <section class="town" id="town">
+    <div class="wrap">
+      <p class="label">Our town</p>
+      <h2>From a coal town to your table</h2>
+      <p class="intro">Black Diamond takes its name from coal, the miners' "black diamonds". Many of the families who dug it came from Italy, and Railroad Avenue still carries that story.</p>
+      <ol>
+        <li><span class="yr">1884</span><p>The Black Diamond Coal Company brings miners and their families north from Nortonville, California, and opens the mines.</p></li>
+        <li><span class="yr">1886</span><p>The railroad depot is built. Today it is the Black Diamond Museum, just down Railroad Avenue.</p></li>
+        <li><span class="yr">1900</span><p>About 3,500 people live here. Italian families from Sicily, Calabria and Basilicata settle just below the train station.</p></li>
+        <li><span class="yr">1904</span><p>The Pacific Coast Company buys the mine and the whole town.</p></li>
+        <li><span class="yr">1959</span><p>The mines have closed, and Black Diamond becomes a city.</p></li>
+        <li><span class="yr">Today</span><p>Chef Rudy Carrillo cooks Italian-American dinners on the same Railroad Avenue.</p></li>
+      </ol>
+      <p class="src">Sources: <a href="https://www.historylink.org/File/460" target="_blank" rel="noopener">HistoryLink: Black Diamond</a> · <a href="https://www.historylink.org/File/20543" target="_blank" rel="noopener">HistoryLink: Italian immigrant coal miners</a> · <a href="https://blackdiamondmuseum.org/" target="_blank" rel="noopener">Black Diamond Historical Society &amp; Museum</a></p>
     </div>
   </section>
 
