@@ -31,3 +31,15 @@ All three families use SIL Open Font License 1.1. Keep complete notices with red
   Source: `https://raw.githubusercontent.com/google/fonts/main/ofl/quicksand/OFL.txt`
 
 Source ZIP retains sibling `brand/` and `img/` paths and licenses. Standalone `Brandbook-v3.html` embeds all six fonts and images, with complete licenses in HTML comments and JavaScript at the end of the body. Native PNG specimen is not browser proof.
+
+
+## Actualización 2026-10-27 · Gloock y Figtree
+
+Elimar eligió **Gloock** para títulos y **Figtree** para texto e interfaz, iguales a blackdiamondgrill.com. Reemplazan a Libre Caslon Display y Quicksand, cuyos archivos se retiraron. Libre Caslon Text se conserva solo para cursivas. Las referencias anteriores a Quicksand y Libre Caslon Display en este documento quedan como historial.
+
+| Familia | Peso | Archivo | Origen | SHA-256 |
+|---|---|---|---|---|
+| Gloock | 400 | `Gloock-400.ttf` | google/fonts `ofl/gloock/Gloock-Regular.ttf` | `c3a67e0212f7da01764796ae721cb9bab3e122d142354f97cf9c63fb763e6d77` |
+| Figtree | 300–900 (variable) | `Figtree-Variable.ttf` | google/fonts `ofl/figtree/Figtree[wght].ttf` | `26ad3db9b31ff7dde67a91ff515d022d2f495cd506590699cf264f0bfe6fb714` |
+
+Licencias completas: `Gloock-OFL.txt` y `Figtree-OFL.txt` (SIL Open Font License 1.1).

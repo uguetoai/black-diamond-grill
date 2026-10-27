@@ -1,10 +1,10 @@
 /* Unmodified official Google Fonts binaries; full notices in *-OFL.txt. See PROVENANCE.md. */
 @font-face {
-  font-family: 'Libre Caslon Display';
+  font-family: 'Gloock';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('./LibreCaslonDisplay-400.ttf') format('truetype');
+  src: url('./Gloock-400.ttf') format('truetype');
 }
 @font-face {
   font-family: 'Libre Caslon Text';
@@ -21,23 +21,9 @@
   src: url('./LibreCaslonText-400.ttf') format('truetype');
 }
 @font-face {
-  font-family: 'Quicksand';
+  font-family: 'Figtree';
   font-style: normal;
-  font-weight: 500;
+  font-weight: 300 900;
   font-display: swap;
-  src: url('./Quicksand-500.ttf') format('truetype');
-}
-@font-face {
-  font-family: 'Quicksand';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url('./Quicksand-600.ttf') format('truetype');
-}
-@font-face {
-  font-family: 'Quicksand';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url('./Quicksand-700.ttf') format('truetype');
+  src: url('./Figtree-Variable.ttf') format('truetype');
 }

@@ -65,3 +65,6 @@ Bundled font binaries and all three family licenses come from official Google Fo
 Quicksand 500/600/700 replaces the secondary only; Libre Caslon remains unchanged. Desktop/tablet sidebar: 256 px, navigation 17 px / 600, numbers 14 px, 44 px targets; mobile navigation: 15 px. Body: 17 px / 1.5. Toolbar: 56 px, controls 15 px. Fine print: at least 13 px on screen. Compact section gaps stay at 36 px; no global shrinking.
 
 `Brandbook-v3.html` is the standalone export with embedded font and image data and complete font-license HTML comments. `Brandbook-v3.zip` preserves all `brand/` and `img/` paths. `tipografia-redondeada.png` is a Pillow/FreeType native specimen using the actual binaries, not browser proof. Exports live in the sibling `black-diamond-grill-deliverables/` directory. Nothing is committed, pushed, or published.
+
+
+**Actualización 2026-10-27:** las fuentes del manual ahora son Gloock (títulos y muestras «Aa»), Figtree (texto e interfaz) y Libre Caslon Text (solo cursivas), iguales a la web. Las menciones anteriores a Quicksand quedan como historial.
