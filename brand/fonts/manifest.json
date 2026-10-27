@@ -1,0 +1,79 @@
+{
+  "css_url": "https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital@0;1&family=Nunito:wght@400;500;600;700&display=swap",
+  "css_url_note": "Original request retained as provenance for unchanged Libre Caslon faces only. Quicksand downloaded through secondary_css_url; Nunito is no longer bundled.",
+  "user_agent": "Python urllib default (no override)",
+  "fonts": [
+    {
+      "family": "Libre Caslon Display",
+      "style": "normal",
+      "weight": "400",
+      "url": "https://fonts.gstatic.com/s/librecaslondisplay/v18/TuGOUUFxWphYQ6YI6q9Xp61FQzxDRKmzr2lR.ttf",
+      "file": "LibreCaslonDisplay-400.ttf",
+      "bytes": 91588,
+      "sha256": "199b2a7deefd8d7d9bae05d34902c4c6486bd11b8e5d1a22c0cea8862943a5a1"
+    },
+    {
+      "family": "Libre Caslon Text",
+      "style": "italic",
+      "weight": "400",
+      "url": "https://fonts.gstatic.com/s/librecaslontext/v5/DdT678IGsGw1aF1JU10PUbTvNNaDMfq91-c.ttf",
+      "file": "LibreCaslonText-400-Italic.ttf",
+      "bytes": 93832,
+      "sha256": "3d4973f83fc079ecc2b245035c98884cc4ae5c59c4d4f31c7333644c10838aa4"
+    },
+    {
+      "family": "Libre Caslon Text",
+      "style": "normal",
+      "weight": "400",
+      "url": "https://fonts.gstatic.com/s/librecaslontext/v5/DdT878IGsGw1aF1JU10PUbTvNNaDMcq_.ttf",
+      "file": "LibreCaslonText-400.ttf",
+      "bytes": 86516,
+      "sha256": "689d2a36e4ad834c0638f9eb659bfd29456deb94ca23b58795d4ec83ceb7ae5c"
+    },
+    {
+      "family": "Quicksand",
+      "style": "normal",
+      "weight": "500",
+      "url": "https://fonts.gstatic.com/s/quicksand/v37/6xK-dSZaM9iE8KbpRA_LJ3z8mH9BOJvgkM0o18E.ttf",
+      "file": "Quicksand-500.ttf",
+      "bytes": 73232,
+      "sha256": "50a6caf101a335e465f0d5e030cd5d55952013abc6e903589f550571f1792718"
+    },
+    {
+      "family": "Quicksand",
+      "style": "normal",
+      "weight": "600",
+      "url": "https://fonts.gstatic.com/s/quicksand/v37/6xK-dSZaM9iE8KbpRA_LJ3z8mH9BOJvgkCEv18E.ttf",
+      "file": "Quicksand-600.ttf",
+      "bytes": 73140,
+      "sha256": "bbf8f3e2d8eb8434c2b49361ea5712127ce62f0aa3924360cfeeb4740bf08814"
+    },
+    {
+      "family": "Quicksand",
+      "style": "normal",
+      "weight": "700",
+      "url": "https://fonts.gstatic.com/s/quicksand/v37/6xK-dSZaM9iE8KbpRA_LJ3z8mH9BOJvgkBgv18E.ttf",
+      "file": "Quicksand-700.ttf",
+      "bytes": 72916,
+      "sha256": "8fb2148170b16156ad78d9d787a5d98a2c00752f91fc0fe88c9367c0809ecba3"
+    }
+  ],
+  "licenses": [
+    {
+      "file": "LibreCaslonDisplay-OFL.txt",
+      "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/librecaslondisplay/OFL.txt",
+      "copyright": "Copyright 2012 The Libre Caslon Display Authors (https://github.com/impallari/Libre-Caslon-Display)"
+    },
+    {
+      "file": "LibreCaslonText-OFL.txt",
+      "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/librecaslontext/OFL.txt",
+      "copyright": "Copyright 2018 The Libre Caslon Text Project Authors (https://github.com/thundernixon/Libre-Caslon)"
+    },
+    {
+      "file": "Quicksand-OFL.txt",
+      "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/quicksand/OFL.txt",
+      "copyright": "Copyright 2011 The Quicksand Project Authors (https://github.com/andrew-paglinawan/QuicksandFamily), with Reserved Font Name “Quicksand”."
+    }
+  ],
+  "secondary_css_url": "https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap"
+}
