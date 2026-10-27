@@ -156,19 +156,41 @@ p{margin:0}
 .wtable td small{display:block;font:400 .8rem/1.4 var(--sans);color:#a99d91;margin-top:2px}
 
 /* story */
-.town{padding-block:clamp(56px,8vw,96px);background:var(--paper-2);border-block:1px solid var(--rule)}
-.town h2{font-size:clamp(2rem,4vw,3.2rem);line-height:1.05;margin-top:14px;max-width:20ch}
-.town .intro{margin-top:16px;color:var(--soft);max-width:60ch}
-.town ol{list-style:none;margin:36px 0 0;padding:0;display:grid;grid-template-columns:repeat(6,1fr);gap:0;border-top:2px solid var(--ink)}
-.town li{padding:18px 16px 0 0;position:relative}
-.town li::before{content:"";position:absolute;top:-7px;left:0;width:12px;height:12px;border-radius:50%;background:var(--paper-2);border:2px solid var(--ink)}
-.town li:last-child::before{background:var(--wine);border-color:var(--wine)}
-.town .yr{font:400 1.9rem/1 var(--display);display:block}
-.town li:last-child .yr{color:var(--wine)}
-.town li p{margin-top:8px;font-size:.92rem;color:var(--soft)}
-.town .src{margin-top:28px;font-size:.8rem;color:var(--soft)}
-.town .src a{color:inherit}
-@media (max-width:860px){.town ol{grid-template-columns:1fr;border-top:0;border-left:2px solid var(--ink);margin-left:6px}.town li{padding:0 0 22px 22px}.town li::before{top:4px;left:-8px}}
+.town{padding-block:clamp(56px,8vw,104px);background:var(--paper-2);border-block:1px solid var(--rule)}
+.town-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap}
+.town h2{font-size:clamp(2rem,4vw,3.2rem);line-height:1.05;margin-top:14px;max-width:18ch}
+.town .intro{margin-top:16px;color:var(--soft);max-width:56ch}
+.dig{font:600 .72rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--soft);display:flex;align-items:center;gap:8px}
+.dig::after{content:"";width:1px;height:28px;background:linear-gradient(var(--soft),transparent)}
+.town-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(24px,4vw,48px);margin-top:36px;align-items:start}
+.strata{border-radius:2px;overflow:hidden;box-shadow:0 30px 60px -40px rgba(24,21,18,.6)}
+.layer{display:grid;grid-template-columns:44px 120px 1fr;gap:18px;align-items:center;padding:20px 24px;position:relative}
+.layer svg{width:30px;height:30px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;opacity:.85}
+.layer .yr{font:400 2.1rem/1 var(--display)}
+.layer p{margin:0;font-size:.95rem;line-height:1.5}
+.l6{background:#fff;color:var(--ink)}.l6 .yr{color:var(--wine)}
+.l5{background:#efe8dd;color:var(--ink)}
+.l4{background:#d9cdbd;color:var(--ink)}
+.l3{background:#a8977f;color:#1d1813}
+.l2{background:#5b4d40;color:#f3ece2}
+.l1{background:#1b1714;color:#f3ece2;padding-block:28px}
+.l1::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 12% 30%,rgba(255,255,255,.55) 0 1px,transparent 2px),radial-gradient(circle at 37% 78%,rgba(255,255,255,.45) 0 1px,transparent 2px),radial-gradient(circle at 63% 22%,rgba(255,255,255,.5) 0 1px,transparent 2px),radial-gradient(circle at 81% 64%,rgba(255,255,255,.4) 0 1px,transparent 2px),radial-gradient(circle at 92% 18%,rgba(255,255,255,.35) 0 1px,transparent 2px),radial-gradient(circle at 24% 88%,rgba(255,255,255,.3) 0 1px,transparent 2px)}
+.l1 .yr{color:#fff}
+.seam{display:block;font:600 .62rem/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:#c9bba8;margin-top:8px}
+.walk{position:sticky;top:96px;background:var(--paper);border:1px solid var(--rule)}
+.walk-map{height:340px;background:#e9e4dc}
+.walk-map .leaflet-tile-pane{filter:grayscale(1) sepia(.18) contrast(.92) brightness(1.04)}
+.walk-body{padding:18px 20px 20px}
+.walk-body b{font:600 .7rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--wine)}
+.walk-body h3{font:400 1.5rem/1.15 var(--display);margin-top:10px}
+.walk-body p{margin-top:8px;font-size:.92rem;color:var(--soft)}
+.walk-body .hrs{margin-top:12px;font-size:.85rem;color:var(--ink)}
+.walk-body a{color:inherit}
+.tpin i{position:absolute;left:0;top:0;width:14px;height:14px;border-radius:50%;transform:translate(-50%,-50%);border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.35)}
+.tpin span{position:absolute;left:12px;top:-12px;white-space:nowrap;font:600 12px/1 var(--sans);padding:6px 9px;color:#fff;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.tpin.g i,.tpin.g span{background:#a8202a}.tpin.g span{left:auto;right:10px;top:10px}.tpin.m span{left:10px;top:-32px}.tpin.m i,.tpin.m span{background:#181512}
+.town .src{margin-top:24px;font-size:.8rem;color:var(--soft)}.town .src a{color:inherit}
+@media (max-width:860px){.town-grid{grid-template-columns:1fr}.walk{position:static}.layer{grid-template-columns:34px 1fr;gap:6px 14px;padding:18px}.layer svg{grid-row:span 2;width:26px;height:26px}.layer .yr{font-size:1.7rem}}
 .story{padding-block:clamp(64px,9vw,112px)}
 .story .wrap{display:grid;grid-template-columns:.75fr 1.25fr;gap:clamp(28px,6vw,96px);align-items:center}
 .story img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:top;background:var(--paper-2)}
@@ -342,17 +364,30 @@ gtag('config', 'G-PFQW4PSBPS');
 
   <section class="town" id="town">
     <div class="wrap">
-      <p class="label">Our town</p>
-      <h2>From a coal town to your table</h2>
-      <p class="intro">Black Diamond takes its name from coal, the miners' "black diamonds". Many of the families who dug it came from Italy, and Railroad Avenue still carries that story.</p>
-      <ol>
-        <li><span class="yr">1884</span><p>The Black Diamond Coal Company brings miners and their families north from Nortonville, California, and opens the mines.</p></li>
-        <li><span class="yr">1886</span><p>The railroad depot is built. Today it is the Black Diamond Museum, just down Railroad Avenue.</p></li>
-        <li><span class="yr">1900</span><p>About 3,500 people live here. Italian families from Sicily, Calabria and Basilicata settle just below the train station.</p></li>
-        <li><span class="yr">1904</span><p>The Pacific Coast Company buys the mine and the whole town.</p></li>
-        <li><span class="yr">1959</span><p>The mines have closed, and Black Diamond becomes a city.</p></li>
-        <li><span class="yr">Today</span><p>Chef Rudy Carrillo cooks Italian-American dinners on the same Railroad Avenue.</p></li>
-      </ol>
+      <div class="town-head">
+        <div><p class="label">Our town</p><h2>From a coal town to your table</h2>
+          <p class="intro">Black Diamond takes its name from coal, the miners' "black diamonds". Many of the families who dug it came from Italy. Dig down through 140 years of Railroad Avenue.</p></div>
+        <span class="dig">Dig down</span>
+      </div>
+      <div class="town-grid">
+        <div class="strata">
+          <div class="layer l6"><svg viewBox="0 0 24 24"><path d="M6 14a4 4 0 0 1 1-7.9A5 5 0 0 1 16.8 6 4 4 0 0 1 18 14v6H6z"/><path d="M6 17h12"/></svg><span class="yr">Today</span><p>Chef Rudy Carrillo cooks Italian-American dinners on the same Railroad Avenue.</p></div>
+          <div class="layer l5"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6M12 5V2"/></svg><span class="yr">1959</span><p>The mines have closed, and Black Diamond becomes a city.</p></div>
+          <div class="layer l4"><svg viewBox="0 0 24 24"><path d="M3 21h18M4 21V9h7v12M11 21V5h9v16M7 12h1M7 16h1M14 9h2M14 13h2M14 17h2"/></svg><span class="yr">1904</span><p>The Pacific Coast Company buys the mine and the whole town.</p></div>
+          <div class="layer l3"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7M5 10v11h14V10"/><path d="M10 21v-5h4v5"/></svg><span class="yr">1900</span><p>About 3,500 people live here. Italian families from Sicily, Calabria and Basilicata settle just below the train station.</p></div>
+          <div class="layer l2"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="13" rx="2"/><path d="M5 10h14M9 20l-2 2M15 20l2 2M8 16v4h8v-4"/><circle cx="9" cy="13" r=".5"/><circle cx="15" cy="13" r=".5"/></svg><span class="yr">1886</span><p>The railroad depot is built. Today it is the Black Diamond Museum, a one-minute walk from our door.</p></div>
+          <div class="layer l1"><svg viewBox="0 0 24 24"><path d="M14 4c3 0 6 2 7 5-3-2-6-2-9-1M14 4C11 4 8 6 7 9c2-1 4-1 5-1"/><path d="M12 8L3 21"/></svg><span class="yr">1884</span><p>The Black Diamond Coal Company brings miners and their families north from Nortonville, California, and opens the mines.<span class="seam">The coal seam</span></p></div>
+        </div>
+        <aside class="walk">
+          <div class="walk-map" id="townMap" role="img" aria-label="Map of Railroad Avenue: Black Diamond Grill and the 1886 depot museum, about 55 meters apart"></div>
+          <div class="walk-body">
+            <b>After dinner</b>
+            <h3>Walk one minute to 1886</h3>
+            <p>Head west down Railroad Avenue to the old railroad depot, now the Black Diamond Museum, about 55 meters from our door.</p>
+            <p class="hrs">Museum hours: Thursday 9 am – 2 pm, Saturday and Sunday 11 am – 3 pm. <a href="https://blackdiamondmuseum.org/" target="_blank" rel="noopener">Check before you go</a>.</p>
+          </div>
+        </aside>
+      </div>
       <p class="src">Sources: <a href="https://www.historylink.org/File/460" target="_blank" rel="noopener">HistoryLink: Black Diamond</a> · <a href="https://www.historylink.org/File/20543" target="_blank" rel="noopener">HistoryLink: Italian immigrant coal miners</a> · <a href="https://blackdiamondmuseum.org/" target="_blank" rel="noopener">Black Diamond Historical Society &amp; Museum</a></p>
     </div>
   </section>
@@ -442,6 +477,20 @@ else if(h&&mins<h[0]){txt.textContent='Opens today at 4 pm'}
 else{let d=day;do{d=(d+1)%7}while(!HOURS[d]);txt.textContent='Closed now · opens '+(d===(day+1)%7?'tomorrow':NAMES[d])+' at 4 pm'}
 const row=document.querySelector('#hours tr[data-d="'+day+'"]'); if(row) row.classList.add('today');
 document.getElementById('yr').textContent=new Date().getFullYear();
+
+// Town map: load Leaflet only when the section comes into view
+const tm=document.getElementById('townMap');
+if(tm){const go=()=>{const css=document.createElement('link');css.rel='stylesheet';css.href='https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css';document.head.appendChild(css);
+  const js=document.createElement('script');js.src='https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js';
+  js.onload=()=>{const G=[47.3084432,-122.006633],M=[47.3086267,-122.0073005];
+    const map=L.map(tm,{scrollWheelZoom:false,zoomControl:false});
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
+    const pin=(ll,t,c)=>L.marker(ll,{icon:L.divIcon({className:'tpin '+c,html:'<i></i><span>'+t+'</span>',iconSize:[0,0]}),keyboard:false}).addTo(map);
+    L.polyline([G,M],{color:'#a8202a',weight:3,dashArray:'6 8'}).addTo(map);
+    pin(G,'Black Diamond Grill','g');pin(M,'1886 depot · Museum','m');
+    map.fitBounds([G,M],{padding:[40,70],maxZoom:tm.clientWidth<500?18:19})};
+  document.head.appendChild(js)};
+  const ob=new IntersectionObserver(e=>{if(e[0].isIntersecting){ob.disconnect();go()}},{rootMargin:'400px'});ob.observe(tm)}
 
 // Live board: wait time and tonight's special, from live.json (updated by Arianna from Telegram)
 fetch('live.json?'+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).then(L=>{if(!L)return;
