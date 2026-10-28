@@ -5,16 +5,16 @@
   const toast = document.getElementById('toast');
   let toastTimer;
   const messages = {
-    es: { copied: 'Color copiado: ', failed: 'No se pudo copiar. Selecciona el código y cópialo manualmente: ', title: 'Black Diamond Grill — Manual de marca · Borrador' },
-    en: { copied: 'Color copied: ', failed: 'Could not copy. Select the code and copy it manually: ', title: 'Black Diamond Grill — Brand guidelines · Draft' }
+    es: { copied: 'Color copiado: ', failed: 'No se pudo copiar. Selecciona el código y cópialo manualmente: ', title: 'Black Diamond Grill — Manual de marca' },
+    en: { copied: 'Color copied: ', failed: 'Could not copy. Select the code and copy it manually: ', title: 'Black Diamond Grill — Brand guidelines' }
   };
   function setLanguage(language) {
     if (!['es', 'en'].includes(language)) return;
     root.lang = language;
     document.title = messages[language].title;
     document.querySelector('meta[name="description"]').content = language === 'es'
-      ? 'Manual de marca bilingüe de Black Diamond Grill. Borrador pendiente de aprobación.'
-      : 'Bilingual Black Diamond Grill brand guidelines. Draft pending owner approval.';
+      ? 'Manual de marca bilingüe de Black Diamond Grill. Versión 1.0.'
+      : 'Bilingual Black Diamond Grill brand guidelines. Version 1.0.';
     languageButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.language === language)));
     document.querySelectorAll('[data-alt-es]').forEach(image => { image.alt = image.getAttribute('data-alt-' + language); });
     document.querySelector('nav').setAttribute('aria-label', language === 'es' ? 'Índice' : 'Contents');
