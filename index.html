@@ -59,6 +59,8 @@ p{margin:0}
 .status i{width:8px;height:8px;border-radius:50%;background:#b9b1a5}
 .status.open{color:var(--basil)}
 .status.open i{background:var(--basil);box-shadow:0 0 0 5px rgba(62,106,51,.14)}
+.status.closed{color:var(--wine)}
+.status.closed i{background:var(--wine)}
 .hero h1{font-size:clamp(2.2rem,4.2vw,3.6rem);line-height:1.02;margin-top:12px}
 .hero h1 em{font-family:var(--serif);font-style:italic;color:var(--wine);font-size:.9em}
 .holiday-notice{margin-top:12px;padding:10px 16px;background:var(--paper-2);border-left:3px solid var(--wine);font-size:.95rem;line-height:1.5}
@@ -288,9 +290,10 @@ gtag('config', 'G-PFQW4PSBPS');
 <main id="top">
   <section class="wrap hero">
     <div>
-      <span class="status" id="status"><i></i><span>Dinner Monday to Saturday, 4 – 8 pm</span></span>
+      <span class="status" id="status"><i></i><span>Closed Wednesday, November 4 · reopens Thursday at 4 pm</span></span>
       <h1>Italian dinners, made from scratch <em>in Old Town Black Diamond</em></h1>
       <p class="lead">Chef Rudy Carrillo cooks family recipes in a cozy house on Railroad Avenue: handmade ravioli, chicken piccata, prime steaks and desserts people drive an hour for.</p>
+      <p class="holiday-notice" id="closureNotice" data-date="2026-11-04" role="note"><strong>Closed Tonight — Wednesday, November 4</strong>Due to family matters, Black Diamond Grill will be closed tonight, Wednesday. We’ll reopen tomorrow, Thursday, at 4:00 pm. Thank you for your understanding and continued support. ❤️<br>— The Black Diamond Grill Family</p>
       <p class="holiday-notice"><strong>Closed on Thanksgiving Day</strong>We will be closed on <time datetime="2026-11-26">Thursday, November 26, 2026</time>. Happy Thanksgiving from our family to yours!</p>
       <div class="ctas">
         <a class="btn" href="https://order.toasttab.com/online/black-diamond-grill-32700-railroad-ave">Order pickup</a>
@@ -477,14 +480,22 @@ gtag('config', 'G-PFQW4PSBPS');
 // Hours in Pacific time: day -> [open, close] in minutes. Keep in sync with the table above.
 const HOURS={1:[960,1200],2:[960,1200],3:[960,1200],4:[960,1200],5:[960,1200],6:[960,1200]};
 const NAMES=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-const p=Object.fromEntries(new Intl.DateTimeFormat('en-US',{timeZone:'America/Los_Angeles',weekday:'short',hour:'numeric',minute:'numeric',hourCycle:'h23'}).formatToParts(new Date()).map(x=>[x.type,x.value]));
+const p=Object.fromEntries(new Intl.DateTimeFormat('en-US',{timeZone:'America/Los_Angeles',year:'numeric',month:'2-digit',day:'2-digit',weekday:'short',hour:'numeric',minute:'numeric',hourCycle:'h23'}).formatToParts(new Date()).map(x=>[x.type,x.value]));
 const day=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(p.weekday), mins=(+p.hour)*60+(+p.minute);
+// One-date exception: regular hours and pickup links return automatically Thursday.
+const localDate=p.year+'-'+p.month+'-'+p.day, closedToday=localDate==='2026-11-04';
+const closureNotice=document.getElementById('closureNotice');
+if(closureNotice)closureNotice.hidden=!closedToday;
 const el=document.getElementById('status'), txt=el.querySelector('span');
-const h=HOURS[day];
-if(h&&mins>=h[0]&&mins<h[1]){el.classList.add('open');txt.textContent='Open now · until 8 pm'}
+const h=closedToday?null:HOURS[day];
+if(closedToday){el.classList.add('closed');txt.textContent='Closed tonight · reopens Thursday at 4 pm';
+  const walkinNote=document.querySelector('.hero .note');if(walkinNote)walkinNote.hidden=true;
+  document.querySelectorAll('a[href*="order.toasttab.com/online/black-diamond-grill-32700-railroad-ave"]').forEach(a=>{a.hidden=true})}
+else if(h&&mins>=h[0]&&mins<h[1]){el.classList.add('open');txt.textContent='Open now · until 8 pm'}
 else if(h&&mins<h[0]){txt.textContent='Opens today at 4 pm'}
 else{let d=day;do{d=(d+1)%7}while(!HOURS[d]);txt.textContent='Closed now · opens '+(d===(day+1)%7?'tomorrow':NAMES[d])+' at 4 pm'}
-const row=document.querySelector('#hours tr[data-d="'+day+'"]'); if(row) row.classList.add('today');
+const row=document.querySelector('#hours tr[data-d="'+day+'"]');
+if(row){row.classList.add('today');if(closedToday){const cell=row.querySelector('td:last-child');cell.textContent='Closed today · Nov 4';cell.classList.add('closed')}}
 document.getElementById('yr').textContent=new Date().getFullYear();
 
 // Coal cart rides the rail as the town section scrolls by
@@ -509,7 +520,7 @@ if(tm){const go=()=>{const css=document.createElement('link');css.rel='styleshee
   const ob=new IntersectionObserver(e=>{if(e[0].isIntersecting){ob.disconnect();go()}},{rootMargin:'400px'});ob.observe(tm)}
 
 // Live board: wait time and tonight's special, from live.json (updated by Arianna from Telegram)
-fetch('live.json?'+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).then(L=>{if(!L)return;
+fetch('live.json?'+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).then(L=>{if(!L||closedToday)return;
   const today=new Intl.DateTimeFormat('en-CA',{timeZone:'America/Los_Angeles'}).format(new Date());
   const tf=new Intl.DateTimeFormat('en-US',{timeZone:'America/Los_Angeles',hour:'numeric',minute:'2-digit'});let shown=false;
   const w=L.wait,near=h&&mins>=h[0]-30&&mins<h[1];
