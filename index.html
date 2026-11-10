@@ -291,6 +291,7 @@ gtag('config', 'G-PFQW4PSBPS');
       <span class="status" id="status"><i></i><span>Dinner Monday to Saturday, 4 – 8 pm</span></span>
       <h1>Italian dinners, made from scratch <em>in Old Town Black Diamond</em></h1>
       <p class="lead">Chef Rudy Carrillo cooks family recipes in a cozy house on Railroad Avenue: handmade ravioli, chicken piccata, prime steaks and desserts people drive an hour for.</p>
+      <p class="holiday-notice" id="earlyClosingNotice" hidden role="note"><strong>Closing at 7 pm tonight</strong>Monday, November 9: dinner service is 4–7 pm. Regular hours return tomorrow.</p>
       <p class="holiday-notice"><strong>Closed on Thanksgiving Day</strong>We will be closed on <time datetime="2026-11-26">Thursday, November 26, 2026</time>. Happy Thanksgiving from our family to yours!</p>
       <div class="ctas">
         <a class="btn" href="https://order.toasttab.com/online/black-diamond-grill-32700-railroad-ave">Order pickup</a>
@@ -477,14 +478,18 @@ gtag('config', 'G-PFQW4PSBPS');
 // Hours in Pacific time: day -> [open, close] in minutes. Keep in sync with the table above.
 const HOURS={1:[960,1200],2:[960,1200],3:[960,1200],4:[960,1200],5:[960,1200],6:[960,1200]};
 const NAMES=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-const p=Object.fromEntries(new Intl.DateTimeFormat('en-US',{timeZone:'America/Los_Angeles',weekday:'short',hour:'numeric',minute:'numeric',hourCycle:'h23'}).formatToParts(new Date()).map(x=>[x.type,x.value]));
+const p=Object.fromEntries(new Intl.DateTimeFormat('en-US',{timeZone:'America/Los_Angeles',year:'numeric',month:'2-digit',day:'2-digit',weekday:'short',hour:'numeric',minute:'numeric',hourCycle:'h23'}).formatToParts(new Date()).map(x=>[x.type,x.value]));
 const day=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(p.weekday), mins=(+p.hour)*60+(+p.minute);
+// One-night exception in Pacific time; regular hours return November 10.
+const earlyToday=p.year+'-'+p.month+'-'+p.day==='2026-11-09';
+document.getElementById('earlyClosingNotice').hidden=!earlyToday;
 const el=document.getElementById('status'), txt=el.querySelector('span');
-const h=HOURS[day];
-if(h&&mins>=h[0]&&mins<h[1]){el.classList.add('open');txt.textContent='Open now · until 8 pm'}
+const h=earlyToday?[960,1140]:HOURS[day];
+if(h&&mins>=h[0]&&mins<h[1]){el.classList.add('open');txt.textContent='Open now · until '+(earlyToday?'7':'8')+' pm'}
 else if(h&&mins<h[0]){txt.textContent='Opens today at 4 pm'}
 else{let d=day;do{d=(d+1)%7}while(!HOURS[d]);txt.textContent='Closed now · opens '+(d===(day+1)%7?'tomorrow':NAMES[d])+' at 4 pm'}
-const row=document.querySelector('#hours tr[data-d="'+day+'"]'); if(row) row.classList.add('today');
+const row=document.querySelector('#hours tr[data-d="'+day+'"]');
+if(row){row.classList.add('today');if(earlyToday)row.querySelector('td:last-child').textContent='4:00 – 7:00 pm (tonight only)'}
 document.getElementById('yr').textContent=new Date().getFullYear();
 
 // Coal cart rides the rail as the town section scrolls by
