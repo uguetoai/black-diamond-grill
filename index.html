@@ -292,7 +292,7 @@ gtag('config', 'G-PFQW4PSBPS');
       <h1>Italian dinners, made from scratch <em>in Old Town Black Diamond</em></h1>
       <p class="lead">Chef Rudy Carrillo cooks family recipes in a cozy house on Railroad Avenue: handmade ravioli, chicken piccata, prime steaks and desserts people drive an hour for.</p>
       <p class="holiday-notice" id="earlyClosingNotice" hidden role="note"><strong>Closing at 7 pm tonight</strong>Monday, November 9: dinner service is 4–7 pm. Regular hours return tomorrow.</p>
-      <p class="holiday-notice"><strong>Closed on Thanksgiving Day</strong>We will be closed on <time datetime="2026-11-26">Thursday, November 26, 2026</time>. Happy Thanksgiving from our family to yours!</p>
+      <p class="holiday-notice" id="holidayClosureNotice" role="note"><strong>Closed Thanksgiving Day &amp; Friday, November 27</strong>We will be closed on <time datetime="2026-11-26">Thursday, November 26</time>, and <time datetime="2026-11-27">Friday, November 27, 2026</time>. Regular hours resume <time datetime="2026-11-28">Saturday, November 28</time>, at 4 pm. Happy Thanksgiving from our family to yours!</p>
       <div class="ctas">
         <a class="btn" href="https://order.toasttab.com/online/black-diamond-grill-32700-railroad-ave">Order pickup</a>
         <a class="btn line" href="#menu">See the menu</a>
@@ -480,16 +480,31 @@ const HOURS={1:[960,1200],2:[960,1200],3:[960,1200],4:[960,1200],5:[960,1200],6:
 const NAMES=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 const p=Object.fromEntries(new Intl.DateTimeFormat('en-US',{timeZone:'America/Los_Angeles',year:'numeric',month:'2-digit',day:'2-digit',weekday:'short',hour:'numeric',minute:'numeric',hourCycle:'h23'}).formatToParts(new Date()).map(x=>[x.type,x.value]));
 const day=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(p.weekday), mins=(+p.hour)*60+(+p.minute);
-// One-night exception in Pacific time; regular hours return November 10.
-const earlyToday=p.year+'-'+p.month+'-'+p.day==='2026-11-09';
+const localDate=p.year+'-'+p.month+'-'+p.day;
+// Date-specific exceptions; the regular weekly schedule stays unchanged.
+const earlyToday=localDate==='2026-11-09';
+const holidayClosures=new Set(['2026-11-26','2026-11-27']);
+const closedForHoliday=holidayClosures.has(localDate);
 document.getElementById('earlyClosingNotice').hidden=!earlyToday;
+document.getElementById('holidayClosureNotice').hidden=localDate>'2026-11-27';
 const el=document.getElementById('status'), txt=el.querySelector('span');
-const h=earlyToday?[960,1140]:HOURS[day];
-if(h&&mins>=h[0]&&mins<h[1]){el.classList.add('open');txt.textContent='Open now · until '+(earlyToday?'7':'8')+' pm'}
+const h=closedForHoliday?null:earlyToday?[960,1140]:HOURS[day];
+if(closedForHoliday){txt.textContent='Closed for Thanksgiving break · reopens Saturday at 4 pm'}
+else if(h&&mins>=h[0]&&mins<h[1]){el.classList.add('open');txt.textContent='Open now · until '+(earlyToday?'7':'8')+' pm'}
 else if(h&&mins<h[0]){txt.textContent='Opens today at 4 pm'}
-else{let d=day;do{d=(d+1)%7}while(!HOURS[d]);txt.textContent='Closed now · opens '+(d===(day+1)%7?'tomorrow':NAMES[d])+' at 4 pm'}
+else{
+  let next='';
+  for(let offset=1;offset<=7;offset++){
+    const date=new Date(Date.UTC(+p.year,+p.month-1,+p.day+offset)),d=date.getUTCDay();
+    if(HOURS[d]&&!holidayClosures.has(date.toISOString().slice(0,10))){next=offset===1?'tomorrow':NAMES[d];break}
+  }
+  txt.textContent='Closed now · opens '+next+' at 4 pm';
+}
 const row=document.querySelector('#hours tr[data-d="'+day+'"]');
-if(row){row.classList.add('today');if(earlyToday)row.querySelector('td:last-child').textContent='4:00 – 7:00 pm (tonight only)'}
+if(row){row.classList.add('today');
+  if(closedForHoliday){const cell=row.querySelector('td:last-child');cell.textContent='Closed — Thanksgiving break';cell.classList.add('closed')}
+  else if(earlyToday)row.querySelector('td:last-child').textContent='4:00 – 7:00 pm (tonight only)';
+}
 document.getElementById('yr').textContent=new Date().getFullYear();
 
 // Coal cart rides the rail as the town section scrolls by
@@ -514,7 +529,7 @@ if(tm){const go=()=>{const css=document.createElement('link');css.rel='styleshee
   const ob=new IntersectionObserver(e=>{if(e[0].isIntersecting){ob.disconnect();go()}},{rootMargin:'400px'});ob.observe(tm)}
 
 // Live board: wait time and tonight's special, from live.json (updated by Arianna from Telegram)
-fetch('live.json?'+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).then(L=>{if(!L)return;
+fetch('live.json?'+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).then(L=>{if(!L||closedForHoliday)return;
   const today=new Intl.DateTimeFormat('en-CA',{timeZone:'America/Los_Angeles'}).format(new Date());
   const tf=new Intl.DateTimeFormat('en-US',{timeZone:'America/Los_Angeles',hour:'numeric',minute:'2-digit'});let shown=false;
   const w=L.wait,near=h&&mins>=h[0]-30&&mins<h[1];
