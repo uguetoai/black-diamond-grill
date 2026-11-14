@@ -577,7 +577,23 @@ document.addEventListener('click',function(e){
   else if(href.indexOf('google.com/maps/place')>-1) name='reviews_google';
   else if(href.indexOf('yelp.com')>-1) name='reviews_yelp';
   else if(href.indexOf('toasttab.com')>-1 && href.indexOf('giftcards')>-1) name='gift_card';
+  else if(href==='#menu') name='see_menu';
+  else if(href.indexOf('blackdiamondmuseum.org')>-1) name='museum_link';
   if(name && window.gtag) gtag('event', name, {link_url: href});
+});
+document.addEventListener('click',function(e){
+  var b=e.target.closest('.pair-dishes button');
+  if(b && window.gtag) gtag('event','wine_pairing',{dish:b.textContent.trim()});
+});
+(function(){
+  var t=document.getElementById('town'); if(!t||!('IntersectionObserver' in window)) return;
+  var io=new IntersectionObserver(function(es){
+    if(es[0].isIntersecting){ io.disconnect(); if(window.gtag) gtag('event','town_view'); }
+  },{threshold:0.3}); io.observe(t);
+})();
+document.addEventListener('DOMContentLoaded',function(){
+  var w=document.querySelector('elevenlabs-convai');
+  if(w) w.addEventListener('elevenlabs-convai:call',function(){ if(window.gtag) gtag('event','arianna_call'); });
 });
 </script>
 <elevenlabs-convai agent-id="agent_9701m5h1g9jqexcv3gy4spvggjak" action-text="Questions about the menu, hours?" start-call-text="Ask Arianna Now"></elevenlabs-convai>
