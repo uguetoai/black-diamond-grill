@@ -505,6 +505,11 @@ if(row){row.classList.add('today');
   if(closedForHoliday){const cell=row.querySelector('td:last-child');cell.textContent='Closed — Thanksgiving break';cell.classList.add('closed')}
   else if(earlyToday)row.querySelector('td:last-child').textContent='4:00 – 7:00 pm (tonight only)';
 }
+// Show this week's Friday closure before Friday arrives; normal hours return afterward.
+if(localDate>='2026-11-23'&&localDate<='2026-11-27'){
+  const fridayCell=document.querySelector('#hours tr[data-d="5"] td:last-child');
+  if(fridayCell){fridayCell.textContent='Closed — November 27 only';fridayCell.classList.add('closed')}
+}
 document.getElementById('yr').textContent=new Date().getFullYear();
 
 // Coal cart rides the rail as the town section scrolls by
